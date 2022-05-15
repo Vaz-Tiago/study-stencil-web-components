@@ -36,3 +36,10 @@ form button:active {
   color: var(--color-orange-hovered);
   border-color: var(--color-orange-hovered);
 }
+
+form button:disabled {
+  background: #ccc;
+  border-color: #ccc;
+  color: var(--color-blue);
+  cursor: not-allowed;
+}

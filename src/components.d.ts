@@ -12,6 +12,7 @@ export namespace Components {
         "titleMenu": string;
     }
     interface VazStockPrice {
+        "stockSymbol": string;
     }
     interface VazTooltip {
         "opened": boolean;
@@ -50,6 +51,7 @@ declare namespace LocalJSX {
         "titleMenu"?: string;
     }
     interface VazStockPrice {
+        "stockSymbol"?: string;
     }
     interface VazTooltip {
         "opened"?: boolean;
