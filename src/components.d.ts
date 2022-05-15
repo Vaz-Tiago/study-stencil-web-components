@@ -7,7 +7,8 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface VazSideDrawer {
-        "open": boolean;
+        "open": () => Promise<void>;
+        "opened": boolean;
         "titleMenu": string;
     }
 }
@@ -24,7 +25,7 @@ declare global {
 }
 declare namespace LocalJSX {
     interface VazSideDrawer {
-        "open"?: boolean;
+        "opened"?: boolean;
         "titleMenu"?: string;
     }
     interface IntrinsicElements {

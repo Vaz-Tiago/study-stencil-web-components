@@ -34,7 +34,7 @@
         <ul>
           <li><a href="#">A Link</a></li>
           <li><a href="#">Another Link</a></li>
-          <li><a href="#">A third Link</a></li>
+          <li><a href="#">A Third Link</a></li>
         </ul>
       </nav>
     </vaz-side-drawer>
@@ -43,8 +43,9 @@
       const sideMenuButton = document.querySelector('#side-menu-button');
       const sideMenu = document.querySelector('vaz-side-drawer');
       sideMenuButton.addEventListener('click', () => {
-        if (!sideMenuButton.open) {
-          sideMenu.open = true;
+        if (!sideMenuButton.opened) {
+          // sideMenu.open = true;
+          sideMenu.open();
         }
       });
     </script>
