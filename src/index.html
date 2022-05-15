@@ -28,6 +28,7 @@
     </style>
   </head>
   <body>
+    <button id="side-menu-button">Open Side Menu</button>
     <vaz-side-drawer title-menu="My Menu">
       <nav class="side-nav">
         <ul>
@@ -37,5 +38,15 @@
         </ul>
       </nav>
     </vaz-side-drawer>
+
+    <script>
+      const sideMenuButton = document.querySelector('#side-menu-button');
+      const sideMenu = document.querySelector('vaz-side-drawer');
+      sideMenuButton.addEventListener('click', () => {
+        if (!sideMenuButton.open) {
+          sideMenu.open = true;
+        }
+      });
+    </script>
   </body>
 </html>
