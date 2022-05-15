@@ -39,12 +39,13 @@
       </nav>
     </vaz-side-drawer>
 
+    <p>Hi there, try my new tooltip component <vaz-tooltip text="This is a tooltip!!" /></p>
+
     <script>
       const sideMenuButton = document.querySelector('#side-menu-button');
       const sideMenu = document.querySelector('vaz-side-drawer');
       sideMenuButton.addEventListener('click', () => {
         if (!sideMenuButton.opened) {
-          // sideMenu.open = true;
           sideMenu.open();
         }
       });
