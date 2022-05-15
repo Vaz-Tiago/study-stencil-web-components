@@ -11,6 +11,11 @@ export namespace Components {
         "opened": boolean;
         "titleMenu": string;
     }
+    interface VazTooltip {
+        "opened": boolean;
+        "text": string;
+        "toggle": () => Promise<void>;
+    }
 }
 declare global {
     interface HTMLVazSideDrawerElement extends Components.VazSideDrawer, HTMLStencilElement {
@@ -19,8 +24,15 @@ declare global {
         prototype: HTMLVazSideDrawerElement;
         new (): HTMLVazSideDrawerElement;
     };
+    interface HTMLVazTooltipElement extends Components.VazTooltip, HTMLStencilElement {
+    }
+    var HTMLVazTooltipElement: {
+        prototype: HTMLVazTooltipElement;
+        new (): HTMLVazTooltipElement;
+    };
     interface HTMLElementTagNameMap {
         "vaz-side-drawer": HTMLVazSideDrawerElement;
+        "vaz-tooltip": HTMLVazTooltipElement;
     }
 }
 declare namespace LocalJSX {
@@ -28,8 +40,13 @@ declare namespace LocalJSX {
         "opened"?: boolean;
         "titleMenu"?: string;
     }
+    interface VazTooltip {
+        "opened"?: boolean;
+        "text"?: string;
+    }
     interface IntrinsicElements {
         "vaz-side-drawer": VazSideDrawer;
+        "vaz-tooltip": VazTooltip;
     }
 }
 export { LocalJSX as JSX };
@@ -37,6 +54,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "vaz-side-drawer": LocalJSX.VazSideDrawer & JSXBase.HTMLAttributes<HTMLVazSideDrawerElement>;
+            "vaz-tooltip": LocalJSX.VazTooltip & JSXBase.HTMLAttributes<HTMLVazTooltipElement>;
         }
     }
 }
