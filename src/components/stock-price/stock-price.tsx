@@ -1,4 +1,4 @@
-import { Component, Element, h, Prop, State } from '@stencil/core';
+import { Component, Element, h, Prop, State, Watch } from '@stencil/core';
 
 @Component({
   tag: 'vaz-stock-price',
@@ -10,13 +10,21 @@ export class StockPrice {
 
   @Element() el: HTMLElement;
 
-  @Prop() stockSymbol: string;
-
   @State() fetchedPrice: number;
   @State() stockUserInput: string;
   @State() stockInputValid = false;
   @State() error: string;
   @State() loading: boolean;
+
+  @Prop({ mutable: true, reflect: true }) stockSymbol: string;
+
+  @Watch('stockSymbol')
+  async onStockSymbolChanged(newValue: string, oldValue: string) {
+    if (newValue !== oldValue) {
+      this.stockUserInput = newValue;
+      await this.fetchStockPrice(newValue);
+    }
+  }
 
   onStockUserInput(event: Event) {
     this.stockUserInput = (event.target as HTMLInputElement).value;
@@ -25,16 +33,14 @@ export class StockPrice {
 
   async onFetchStockPrice(event: Event) {
     event.preventDefault();
-    // const stockSymbol = (this.el.shadowRoot.querySelector('#stock-symbol') as HTMLInputElement)?.value;
-    const stockSymbol = this.stockInput.value;
-    await this.fetchStockPrice(stockSymbol);
+    this.stockSymbol = this.stockInput.value;
   }
 
-  async componentDidLoad() {
+  componentWillLoad() {
     if (this.stockSymbol) {
       this.stockInputValid = true;
       this.stockUserInput = this.stockSymbol;
-      await this.fetchStockPrice(this.stockSymbol);
+      this.fetchStockPrice(this.stockSymbol);
     }
   }
 
