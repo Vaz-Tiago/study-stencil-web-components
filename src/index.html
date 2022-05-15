@@ -7,8 +7,35 @@
 
     <script type="module" src="/build/stencil.esm.js"></script>
     <script nomodule src="/build/stencil.js"></script>
+
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+
+      .side-nav ul {
+        list-style: none;
+      }
+
+      .side-nav a {
+        text-decoration: none;
+        color: #a2c8e7;
+      }
+
+      .side-nav li {
+        margin: 1rem 0;
+      }
+    </style>
   </head>
   <body>
-    <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+    <vaz-side-drawer title-menu="My Menu">
+      <nav class="side-nav">
+        <ul>
+          <li><a href="#">A Link</a></li>
+          <li><a href="#">Another Link</a></li>
+          <li><a href="#">A third Link</a></li>
+        </ul>
+      </nav>
+    </vaz-side-drawer>
   </body>
 </html>
