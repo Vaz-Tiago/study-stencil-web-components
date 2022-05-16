@@ -20,6 +20,15 @@
     </style>
   </head>
   <body>
-    <vaz-stock-price stock-symbol="AAPL" />
+    <vaz-stock-price stock-symbol="AAPL"></vaz-stock-price>
+    <vaz-stock-finder></vaz-stock-finder>
+
+    <!-- <script>
+      // With this code we can update the vaz-stock-price attribute
+      // But i implement this inside the component to learn about Listeners
+      document.addEventListener('vazSymbolSelect', e => {
+        console.log(e);
+      });
+    </script> -->
   </body>
 </html>
