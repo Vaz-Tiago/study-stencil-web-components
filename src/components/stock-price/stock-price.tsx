@@ -66,6 +66,12 @@ export class StockPrice {
     }
   }
 
+  hostData() {
+    return {
+      class: this.error ? 'error' : '',
+    };
+  }
+
   render() {
     let dataContent = <p>Pleas enter a symbol</p>;
     if (this.error) dataContent = <p>{this.error}</p>;
@@ -73,7 +79,7 @@ export class StockPrice {
     return [
       <form onSubmit={this.onFetchStockPrice.bind(this)}>
         <input id="stock-symbol" ref={el => (this.stockInput = el)} value={this.stockUserInput} onInput={this.onStockUserInput.bind(this)} />
-        <button type="submit" disabled={!this.stockInputValid}>
+        <button type="submit" disabled={!this.stockInputValid || this.loading}>
           Fetch
         </button>
       </form>,
