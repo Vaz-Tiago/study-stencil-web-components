@@ -49,7 +49,9 @@ export class StockPrice {
     try {
       const apiResponse = await fetch(`https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=${stockSymbol}&apikey=${process.env.AV_TOKEN}`);
       const parsedRes = await apiResponse.json();
+      if (parsedRes?.Note) throw new Error('API limit, wait a minute to call again!');
       if (!parsedRes['Global Quote']['05. price']) throw new Error('Invalid stock symbol');
+
       this.fetchedPrice = +parsedRes['Global Quote']['05. price'];
       this.error = null;
     } catch (err) {
@@ -76,6 +78,7 @@ export class StockPrice {
     let dataContent = <p>Pleas enter a symbol</p>;
     if (this.error) dataContent = <p>{this.error}</p>;
     if (this.fetchedPrice) dataContent = <p>Price: ${this.fetchedPrice}</p>;
+    if (this.loading) dataContent = <vaz-spinner></vaz-spinner>;
     return [
       <form onSubmit={this.onFetchStockPrice.bind(this)}>
         <input id="stock-symbol" ref={el => (this.stockInput = el)} value={this.stockUserInput} onInput={this.onStockUserInput.bind(this)} />
@@ -83,7 +86,7 @@ export class StockPrice {
           Fetch
         </button>
       </form>,
-      <div>{this.loading ? <p>Fetching Data...</p> : dataContent}</div>,
+      <div>{dataContent}</div>,
     ];
   }
 }

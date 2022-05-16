@@ -11,6 +11,8 @@ export namespace Components {
         "opened": boolean;
         "titleMenu": string;
     }
+    interface VazSpinner {
+    }
     interface VazStockFinder {
     }
     interface VazStockPrice {
@@ -28,6 +30,12 @@ declare global {
     var HTMLVazSideDrawerElement: {
         prototype: HTMLVazSideDrawerElement;
         new (): HTMLVazSideDrawerElement;
+    };
+    interface HTMLVazSpinnerElement extends Components.VazSpinner, HTMLStencilElement {
+    }
+    var HTMLVazSpinnerElement: {
+        prototype: HTMLVazSpinnerElement;
+        new (): HTMLVazSpinnerElement;
     };
     interface HTMLVazStockFinderElement extends Components.VazStockFinder, HTMLStencilElement {
     }
@@ -49,6 +57,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "vaz-side-drawer": HTMLVazSideDrawerElement;
+        "vaz-spinner": HTMLVazSpinnerElement;
         "vaz-stock-finder": HTMLVazStockFinderElement;
         "vaz-stock-price": HTMLVazStockPriceElement;
         "vaz-tooltip": HTMLVazTooltipElement;
@@ -58,6 +67,8 @@ declare namespace LocalJSX {
     interface VazSideDrawer {
         "opened"?: boolean;
         "titleMenu"?: string;
+    }
+    interface VazSpinner {
     }
     interface VazStockFinder {
         "onVazSymbolSelect"?: (event: CustomEvent<string>) => void;
@@ -71,6 +82,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "vaz-side-drawer": VazSideDrawer;
+        "vaz-spinner": VazSpinner;
         "vaz-stock-finder": VazStockFinder;
         "vaz-stock-price": VazStockPrice;
         "vaz-tooltip": VazTooltip;
@@ -81,6 +93,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "vaz-side-drawer": LocalJSX.VazSideDrawer & JSXBase.HTMLAttributes<HTMLVazSideDrawerElement>;
+            "vaz-spinner": LocalJSX.VazSpinner & JSXBase.HTMLAttributes<HTMLVazSpinnerElement>;
             "vaz-stock-finder": LocalJSX.VazStockFinder & JSXBase.HTMLAttributes<HTMLVazStockFinderElement>;
             "vaz-stock-price": LocalJSX.VazStockPrice & JSXBase.HTMLAttributes<HTMLVazStockPriceElement>;
             "vaz-tooltip": LocalJSX.VazTooltip & JSXBase.HTMLAttributes<HTMLVazTooltipElement>;
