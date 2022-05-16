@@ -9,46 +9,26 @@
     <script nomodule src="/build/stencil.js"></script>
 
     <style>
+      html {
+        --color-orange: #f5941e;
+        --color-orange-hovered: #ffae4b;
+        --color-blue: #1f1f49;
+      }
       body {
         font-family: sans-serif;
-      }
-
-      .side-nav ul {
-        list-style: none;
-      }
-
-      .side-nav a {
-        text-decoration: none;
-        color: #a2c8e7;
-      }
-
-      .side-nav li {
-        margin: 1rem 0;
       }
     </style>
   </head>
   <body>
-    <button id="side-menu-button">Open Side Menu</button>
-    <vaz-side-drawer title-menu="My Menu">
-      <nav class="side-nav">
-        <ul>
-          <li><a href="#">A Link</a></li>
-          <li><a href="#">Another Link</a></li>
-          <li><a href="#">A Third Link</a></li>
-        </ul>
-      </nav>
-    </vaz-side-drawer>
+    <vaz-stock-price stock-symbol="AAPL"></vaz-stock-price>
+    <vaz-stock-finder></vaz-stock-finder>
 
-    <p>Hi there, try my new tooltip component <vaz-tooltip text="This is a tooltip!!" /></p>
-
-    <script>
-      const sideMenuButton = document.querySelector('#side-menu-button');
-      const sideMenu = document.querySelector('vaz-side-drawer');
-      sideMenuButton.addEventListener('click', () => {
-        if (!sideMenuButton.opened) {
-          sideMenu.open();
-        }
+    <!-- <script>
+      // With this code we can update the vaz-stock-price attribute
+      // But i implement this inside the component to learn about Listeners
+      document.addEventListener('vazSymbolSelect', e => {
+        console.log(e);
       });
-    </script>
+    </script> -->
   </body>
 </html>
