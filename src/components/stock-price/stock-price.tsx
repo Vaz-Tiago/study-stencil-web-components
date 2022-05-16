@@ -1,4 +1,4 @@
-import { Component, Element, h, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, h, Listen, Prop, State, Watch } from '@stencil/core';
 
 @Component({
   tag: 'vaz-stock-price',
@@ -57,6 +57,13 @@ export class StockPrice {
       this.error = err.message;
     }
     this.loading = false;
+  }
+
+  @Listen('vazSymbolSelect', { target: 'body' })
+  onStockSymbolSelected(event: CustomEvent) {
+    if (event.detail && event.detail !== this.stockSymbol) {
+      this.stockSymbol = event.detail;
+    }
   }
 
   render() {
